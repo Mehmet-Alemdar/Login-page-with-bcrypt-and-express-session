@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "start": "node index.js .bin/www",
+    "watch": "nodemon .bin/www"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "express": "^4.17.3",
+    "express-session": "^1.17.2",
+    "mongoose": "^6.2.10",
+    "nodemon": "^2.0.15"
+  }
+}
