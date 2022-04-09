@@ -3,8 +3,12 @@ class BaseService {
     this.model = model
   }
 
-  save(object) {
-    return this.model.insertMany(object)
+  async save(object) {
+    return await this.model.create(object)
+  }
+
+  async findOne(value) {
+    return await this.model.findOne({ email: value })
   }
 }
 

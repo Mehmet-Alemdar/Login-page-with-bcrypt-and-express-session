@@ -1,5 +1,5 @@
 const router = require("express").Router()
-const createHashedPassword = require("../lib/bcrypt")
+const { createHashedPassword } = require("../lib/bcrypt")
 const { UserService } = require("../services")
 
 router.get("/", (req,res) => {
