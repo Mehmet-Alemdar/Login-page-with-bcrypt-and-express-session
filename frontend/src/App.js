@@ -5,7 +5,7 @@ import "./index.css"
 function App() {
   return (
     <Router>
-      <div className="flex justify-center items-center mt-40">
+      <div className="flex justify-center items-center mt-10">
         <Switch>
           <Route exact path="/">
             <Login />
