@@ -35,9 +35,7 @@ function Register() {
         </div>
       </form>
       <div className="bg-slate-200 w-full max-w-xs p-2 shadow-md rounded px-8 text-center">
-        <Link to="/">
-          <p>Do you have an account? <b className="text-indigo-500 hover:text-indigo-700">Sign Up</b></p>
-        </Link>
+        <p>Do you have an account? <Link to="/"><b className="text-indigo-500 hover:text-indigo-700">Login</b></Link> </p>
       </div>
     </div>
   )
