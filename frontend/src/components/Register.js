@@ -30,7 +30,7 @@ function Register() {
         </div>
         <div className="flex items-center justify-between">
           <button to="/register" className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" type="button">
-            Sign In
+            Sign Up
           </button>
         </div>
       </form>
