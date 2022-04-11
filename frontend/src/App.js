@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom"
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Profile from "./components/Profile";
+
 import "./index.css"
 
 function App() {
@@ -11,8 +13,11 @@ function App() {
           <Route exact path="/">
             <Login />
           </Route>
-          <Route exact path="/register">
+          <Route  path="/register">
             <Register />
+          </Route>
+          <Route  path="/profile">
+            <Profile />
           </Route>
         </Switch>
       </div>
