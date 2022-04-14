@@ -17,9 +17,9 @@ function Login() {
       user
     }).then((response) => {
       if(response.status === 200){
-        console.log(11);
         history.push({
-          pathname: `/profile/${response.data._id}`
+          pathname: "/profile",
+          search: `id=${response.data._id}`
         }) 
       }else {
         alert(response.data)
