@@ -8,20 +8,19 @@ router.get("/", (req,res) => {
 
 router.post("/", async(req, res) => {
   try {
-    const object = req.body
+    const object = req.body.user
     
     const user = await UserService.findByEmail(object.email)
-
     if(user){
       const matched = await matchedPassword(object.password, user.password)
 
       if(matched){
-        res.status(200).json({ msg: "The user found", user})
-      } else {
-        res.status(403).json({ msg: "Wrong password"})
+        res.status(200).send(user)
+      }else{
+        res.status(203).send("Wrong password")
       }
-    } else {
-      res.status(404).json({ msg: "The user not found"})
+    }else {
+      res.status(203).send("The user not found")
     }
   } catch(err) {
     res.send({ msg: err })
