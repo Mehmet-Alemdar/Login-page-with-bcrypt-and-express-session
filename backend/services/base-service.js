@@ -10,6 +10,10 @@ class BaseService {
   async findOne(value) {
     return await this.model.findOne({ email: value })
   }
+
+  async find(id) {
+    return this.model.findById(id)
+  }
 }
 
 module.exports = BaseService
