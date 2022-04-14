@@ -18,8 +18,7 @@ function Register() {
     axios.post('http://localhost:3000/register', {
       user
     })
-
-}
+  }
 
   const registerPage = (
     <div className="w-full max-w-xs ">
