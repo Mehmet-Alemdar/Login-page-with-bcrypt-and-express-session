@@ -1,9 +1,9 @@
 const router = require("express").Router()
 const { UserService } = require("../services")
 
-router.get("/:id", async(req,res) => {
+router.get("/", async(req,res) => {
   try {
-    const { id } = req.params
+    const { id } = req.query
 
     const user = await UserService.find(id)
     
