@@ -1,6 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useLocation, useHistory } from 'react-router-dom'
+import axios from 'axios';
 
 function Profile() {
+  const history = useHistory()
+  const location = useLocation()
+  const query = location.search
+  const [user, setUser] = useState([])
+
+  React.useEffect(() => {
+    axios.get(`http://localhost:3000/profile${query}`)
+    .then((response) => {
+      if(response.status === 200) {
+        setUser(response.data)
+      }else {
+        alert(response.data)
+        history.push("/")
+      }
+    })
+  },[])
+
   const profilePage = (
     <div className='bg-slate-200 w-full max-w-xs flex flex-col items-center pt-10 pb-12 rounded shadow-lg shadow-slate-400/30'>
       <div className='mb-10'>
@@ -9,15 +28,15 @@ function Profile() {
       </div>
       <div className='w-full flex flex-col items-center mb-6 py-1 bg-gradient-to-r from-indigo-500 to-indigo-800  shadow-lg shadow-slate-500/50 '>
         <label className="block text-black text-sm font-bold mb-1">Name</label>
-        <p className='text-white pb-2'>userName</p>
+        <p className='text-white pb-2'>{user.name}</p>
       </div>
       <div className='w-full flex flex-col items-center mb-6 py-1 bg-gradient-to-r from-indigo-500 to-indigo-800  shadow-lg shadow-slate-500/50 '>
          <label className="block text-black text-sm font-bold mb-1">Surname</label>
-        <p className='text-white pb-2'>userSurname</p>
+        <p className='text-white pb-2'>{user.surname}</p>
       </div>
       <div className='w-full flex flex-col items-center mb-4 py-1 bg-gradient-to-r from-indigo-500 to-indigo-800  shadow-lg shadow-slate-500/50 '>
          <label className="block text-black text-sm font-bold mb-1">E-mail</label>
-        <p className='text-white pb-2'>userMail</p>
+        <p className='text-white pb-2'>{user.email}</p>
       </div>
       <div className='mt-10'>
         <button className='w-28 h-10  rounded  font-bold text-indigo-600 duration-300 hover:text-white hover:bg-gradient-to-r from-indigo-500 to-indigo-800 hover:shadow-lg hover:shadow-slate-400/40'>Logout</button>
