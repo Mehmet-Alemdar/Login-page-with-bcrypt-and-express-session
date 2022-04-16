@@ -4,7 +4,7 @@ import axios from 'axios'
 import "../index.css"
 
 function Register() {
-  // axios.defaults.baseURL = 'http://localhost:3000'
+  const [accountCreated, setAccountCreated] = useState(false)
   const [user, setUser] = useState({
     name: '',
     surname: '',
@@ -17,6 +17,8 @@ function Register() {
 
     axios.post('http://localhost:3000/register', {
       user
+    }).then(() => {
+      setAccountCreated(true)
     })
   }
 
@@ -46,6 +48,10 @@ function Register() {
             Password
           </label>
           <input onChange={(e) => setUser({...user, password: e.target.value})} value={user.password} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="*******" />
+          <div className={accountCreated ? 'block bg-green-200 px-5 py-1 text-center rounded shadow-md' : 'hidden '}>
+            <p className="text-sm">Your account has been successfully created.</p>
+            <Link to="/"><b className="text-violet-500 underline hover:text-violet-800 animate-pulse">Login</b></Link>
+          </div>
         </div>
         <div className="flex items-center justify-between">
           <button className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" type="submit">
