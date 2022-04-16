@@ -3,7 +3,12 @@ const { UserService } = require("../services")
 const { matchedPassword } = require("../lib/bcrypt")
 
 router.get("/", (req,res) => {
-  res.send("login page")
+  const user = req.session.user
+  if(user) {
+    res.status(200).send(user)
+  }else {
+    res.status(203)
+  }
 })
 
 router.post("/", async(req, res) => {
@@ -11,10 +16,18 @@ router.post("/", async(req, res) => {
     const object = req.body.user
     
     const user = await UserService.findByEmail(object.email)
-    if(user){
-      const matched = await matchedPassword(object.password, user.password)
 
+    if(user){
+      const {name, surname, email} = user
+      const matched = await matchedPassword(object.password, user.password)
       if(matched){
+        req.session.authenticated = true
+        req.session.user = {
+          name,
+          surname,
+          email
+        }
+        
         res.status(200).send(user)
       }else{
         res.status(203).send("Wrong password")

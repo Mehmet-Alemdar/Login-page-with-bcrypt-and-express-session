@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import { useLocation, useHistory } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom'
 import axios from 'axios';
 
 function Profile() {
   const history = useHistory()
-  const location = useLocation()
-  const query = location.search
   const [user, setUser] = useState([])
 
-  React.useEffect(() => {
-    axios.get(`http://localhost:3000/profile${query}`)
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/profile`)
     .then((response) => {
       if(response.status === 200) {
         setUser(response.data)
@@ -18,7 +17,7 @@ function Profile() {
         history.push("/")
       }
     })
-  },[])
+  }, [])
 
   const profilePage = (
     <div className='bg-slate-200 w-full max-w-xs flex flex-col items-center pt-10 pb-12 rounded shadow-lg shadow-slate-400/30'>

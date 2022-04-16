@@ -1,7 +1,9 @@
 import { Link, useHistory } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios"
 import "../index.css"
+
+axios.defaults.withCredentials = true
 
 function Login() {
   const history = useHistory()
@@ -10,17 +12,23 @@ function Login() {
     password: ''
   })
 
+  useEffect(() => {
+    axios.get("http://localhost:3000/login").then((response) => {
+      if(response.status === 200) {
+        history.push("/profile")
+      }
+    })
+  },[])
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     axios.post("http://localhost:3000/login", {
-      user
+      user,
+      withCredentials: true
     }).then((response) => {
       if(response.status === 200){
-        history.push({
-          pathname: "/profile",
-          search: `id=${response.data._id}`
-        }) 
+        history.push("/profile")
       }else {
         alert(response.data)
       }
