@@ -22,4 +22,14 @@ router.get("/", ensureAuthentication, async(req,res) => {
   }
 })
 
+router.post("/logout", (req, res) => {
+  try {
+    req.session.destroy()
+    res.clearCookie('connect.sid')
+    res.status(200).send("ok")
+  }catch(err) {
+    res.status(500).send("Something went wrong")
+  }
+})
+
 module.exports = router
