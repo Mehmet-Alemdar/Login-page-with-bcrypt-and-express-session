@@ -9,7 +9,7 @@ router.get("/", (req,res) => {
 router.post("/", async (req,res) => {
   try{
     const object = req.body.user
-  
+
     const hashedPassword = await createHashedPassword(object.password)
   
     object.password = hashedPassword

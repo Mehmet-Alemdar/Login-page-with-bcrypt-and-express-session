@@ -20,20 +20,37 @@ function Login() {
     })
   },[])
 
+  const checkEmpties = () => {
+    let isEmpty = true
+
+    for(const i in user) {
+      if(user[i].length !== 0){
+        isEmpty = false
+      }else {
+        isEmpty = true
+      }
+    }
+
+    return isEmpty
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    axios.post("http://localhost:3000/login", {
-      user,
-      withCredentials: true
-    }).then((response) => {
-      if(response.status === 200){
-        history.push("/profile")
-      }else {
-        alert(response.data)
-      }
-    })
-
+    if(checkEmpties()){
+      alert("You entered incomplete information")
+    }else {
+      axios.post("http://localhost:3000/login", {
+        user,
+        withCredentials: true
+      }).then((response) => {
+        if(response.status === 200){
+          history.push("/profile")
+        }else {
+          alert(response.data)
+        }
+      })
+    }
   }
 
 

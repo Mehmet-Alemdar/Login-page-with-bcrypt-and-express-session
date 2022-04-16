@@ -12,14 +12,51 @@ function Register() {
     password: ''
   })
 
+  const checkEmpties = () => {
+    let isEmpty = true
+
+    for(const i in user) {
+      if(user[i].length !== 0){
+        isEmpty = false
+      }else {
+        isEmpty = true
+      }
+    }
+
+    return isEmpty
+  }
+
+  const cehckConditions = () => {
+
+    let conditions = []
+
+    if(user.email.length < 2) {
+      conditions.push("Email must be at least two characters")
+    }
+    if(user.password.length < 3) {
+      conditions.push("Passport must have at least three characters")
+    }
+
+    return conditions
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    axios.post('http://localhost:3000/register', {
-      user
-    }).then(() => {
-      setAccountCreated(true)
-    })
+    
+    if(checkEmpties()){
+      alert("You entered incomplete information")
+    }else {
+      if(cehckConditions().length > 0 ){
+        alert(cehckConditions())
+      }else {
+        axios.post('http://localhost:3000/register', {
+          user
+        }).then(() => {
+          setAccountCreated(true)
+        })
+      }
+    }
   }
 
   const registerPage = (
