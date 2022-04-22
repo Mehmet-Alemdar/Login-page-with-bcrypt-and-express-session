@@ -16,16 +16,19 @@ router.post("/", async(req, res) => {
     const object = req.body.user
     
     const user = await UserService.findByEmail(object.email)
-
+    
     if(user){
-      const {name, surname, email} = user
+      const {id, name, surname, email, image} = user
+
       const matched = await matchedPassword(object.password, user.password)
       if(matched){
         req.session.authenticated = true
         req.session.user = {
+          id,
           name,
           surname,
-          email
+          email,
+          image
         }
         
         res.status(200).send(user)

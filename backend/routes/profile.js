@@ -1,4 +1,5 @@
 const router = require("express").Router()
+const { UserService } = require("../services")
 
 function ensureAuthentication(req, res, next) {
   if (req.session.authenticated) {
@@ -11,7 +12,7 @@ function ensureAuthentication(req, res, next) {
 router.get("/", ensureAuthentication, async(req,res) => {
   try {
     const user = req.session.user
-    
+    console.log("aaa", user);
     if(user) {
       res.status(200).send(user)
     }else{
@@ -20,6 +21,21 @@ router.get("/", ensureAuthentication, async(req,res) => {
   }catch (err) {
     res.status(203).send("The user not found at this id")
   }
+})
+
+router.post("/image", async(req, res) => {
+  const userId = req.session.user.id
+  const user = await UserService.find(userId)
+  
+  const imageUrl = req.body.image
+
+  user.image = imageUrl
+
+  await UserService.update(userId, user)
+
+  req.session.user.image = imageUrl
+
+  res.send(user)
 })
 
 router.post("/logout", (req, res) => {

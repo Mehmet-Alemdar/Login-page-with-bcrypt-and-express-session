@@ -8,7 +8,7 @@ import "./index.css"
 function App() {
   return (
     <Router>
-      <div className="flex justify-center items-center mt-10">
+      <div className="grid place-items-center h-screen">
         <Switch>
           <Route exact path="/">
             <Login />

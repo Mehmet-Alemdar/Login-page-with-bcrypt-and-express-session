@@ -5,7 +5,7 @@ const UserSchema = new mongoose.Schema({
   name: { type: String, required: true, minlength: 1},
   surname: { type: String, required: true, minlength: 1},
   password: { type: String, required: true, minlength: 3},
-  image: String
+  image: { type: String, default: '' }
 })
 
 module.exports = mongoose.model('User', UserSchema)
