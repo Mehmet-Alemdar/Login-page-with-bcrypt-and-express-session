@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  frontend:
+    build: frontend
+    ports: 
+      - 3006:3006
+  backend:
+    build: backend
+    environment:
+      MONGODB_CONNECTION_STRING: 'mongodb://mongodb/login-page'
+    ports: 
+      - 3000:3000
+  mongodb:
+    image: mongo:4.2
+    ports:
+    - 37017:27017
