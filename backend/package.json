@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "node index.js .bin/www",
+    "start": "node .bin/www",
     "watch": "nodemon .bin/www"
   },
   "dependencies": {
