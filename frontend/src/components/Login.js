@@ -79,10 +79,6 @@ function Login() {
             </button>
           </Link>
         </div>
-        <br />
-        <Link to="/">
-            <p className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">Forgot Password?</p>
-        </Link>
       </form>
     </div>
   )
