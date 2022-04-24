@@ -16,10 +16,10 @@ function Register() {
     let isEmpty = true
 
     for(const i in user) {
-      if(user[i].length !== 0){
-        isEmpty = false
+      if(user[i].length === 0) {
+        break
       }else {
-        isEmpty = true
+        isEmpty = false
       }
     }
 
