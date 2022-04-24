@@ -95,9 +95,14 @@ function Register() {
           </div>
         </div>
         <div className="flex items-center justify-between">
-          <button className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" type="submit">
-            Sign Up
-          </button>
+          {accountCreated 
+            ? 
+            <></>
+            : 
+            <button className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" type="submit">
+              Sign Up
+            </button>
+          }
         </div>
       </form>
       <div className="bg-slate-200 w-full max-w-xs p-2 shadow-md rounded px-8 text-center">
