@@ -52,8 +52,12 @@ function Register() {
       }else {
         axios.post('http://localhost:3000/register', {
           user
-        }).then(() => {
-          setAccountCreated(true)
+        }).then((response) => {
+          if(response.status !== 201) {
+            alert(response.data.msg)
+          }else {
+            setAccountCreated(true)
+          }
         })
       }
     }

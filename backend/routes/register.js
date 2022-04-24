@@ -10,13 +10,19 @@ router.post("/", async (req,res) => {
   try{
     const object = req.body.user
 
-    const hashedPassword = await createHashedPassword(object.password)
-  
-    object.password = hashedPassword
+    const checkEmail = await UserService.findByEmail(object.email)
 
-    const user = await UserService.save(object)
-    
-    res.status(201).json({msg: "User created", user})
+    if(checkEmail) {
+      res.status(203).json({ msg: "This email address is already registered" })
+    }else {
+      const hashedPassword = await createHashedPassword(object.password)
+  
+      object.password = hashedPassword
+  
+      const user = await UserService.save(object)
+      
+      res.status(201).json({msg: "User created", user})
+    }
     
   }catch(err) {
     res.send({msg: err})
