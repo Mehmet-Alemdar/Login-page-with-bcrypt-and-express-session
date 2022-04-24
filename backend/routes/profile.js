@@ -12,7 +12,6 @@ function ensureAuthentication(req, res, next) {
 router.get("/", ensureAuthentication, async(req,res) => {
   try {
     const user = req.session.user
-    console.log("aaa", user);
     if(user) {
       res.status(200).send(user)
     }else{

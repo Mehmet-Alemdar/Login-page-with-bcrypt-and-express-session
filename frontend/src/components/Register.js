@@ -26,7 +26,7 @@ function Register() {
     return isEmpty
   }
 
-  const cehckConditions = () => {
+  const checkConditions = () => {
 
     let conditions = []
 
@@ -47,8 +47,8 @@ function Register() {
     if(checkEmpties()){
       alert("You entered incomplete information")
     }else {
-      if(cehckConditions().length > 0 ){
-        alert(cehckConditions())
+      if(checkConditions().length > 0 ){
+        alert(checkConditions())
       }else {
         axios.post('http://localhost:3000/register', {
           user
