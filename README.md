@@ -10,7 +10,6 @@
 - Node.js
 - Express.js
 - React
-- JSX
 - MongoDB
 - Mongoose
 - Docker
